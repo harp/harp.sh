@@ -15,14 +15,14 @@ sudo npm install -g npm@latest
 sudo npm install -g harp
 ```
 
-You can also configure npm to run [without needing `sudo`](https://docs.npmjs.com/getting-started/fixing-npm-permissions). If you haven’t tried Harp before, learn how to [get started quickly](https://harp.rip/docs/quick-start).
+You can also configure npm to run [without needing `sudo`](https://docs.npmjs.com/getting-started/fixing-npm-permissions). If you haven’t tried Harp before, learn how to [get started quickly](https://harp.sh/docs/quick-start).
 
 ![](/blog/images/harp-weekly-example-illustration.png)
 
 ## Changes in Harp v0.19.0
 
 - Sass is updated [to v3.3.3](https://github.com/sass/node-sass/releases/tag/v3.3.3), which improves Node-sass on Node v4.0.0
-- [Connect is updated to v2.30.2](https://github.com/sintaxi/harp/commit/3f2298da2c115c7c6ca17ad2ebfc5415a26c26aa), which ensures Harp is more secure when running it [as Express middleware](https://harp.rip/docs/environment/lib)
+- [Connect is updated to v2.30.2](https://github.com/sintaxi/harp/commit/3f2298da2c115c7c6ca17ad2ebfc5415a26c26aa), which ensures Harp is more secure when running it [as Express middleware](https://harp.sh/docs/environment/lib)
 - Updates [Minify to v0.3.3](https://github.com/harp/minify), which includes updated versions of UglifyJS2 and HTML Minify
 - Updates [LRU Cache to v2.7.0](https://github.com/isaacs/node-lru-cache)
 - Changes Autoprefixer to be a PostCSS plugin: when using Harp, everything still works the same, but this will allow us to update Autoprefixer in the next version and supresses some console warnings in the meantime

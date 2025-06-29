@@ -4,7 +4,7 @@ This edition of Harp Weekly includes plenty of patterns you can use when buildin
 
 ## Nested Layouts
 
-Raymond Camden of Adobe has become a staple of Harp Weekly, and I couldn’t be happier about it! Last week, he [recorded a screencast](https://harp.rip/blog/harp-weekly-2014-02-24), and this week he will show you how you can use [nested layouts with Harp](http://www.raymondcamden.com/index.cfm/2014/2/27/Nested-Layouts-in-HarpJS).
+Raymond Camden of Adobe has become a staple of Harp Weekly, and I couldn’t be happier about it! Last week, he [recorded a screencast](https://harp.sh/blog/harp-weekly-2014-02-24), and this week he will show you how you can use [nested layouts with Harp](http://www.raymondcamden.com/index.cfm/2014/2/27/Nested-Layouts-in-HarpJS).
 
 ## Writing short-form with Harp
 
@@ -14,7 +14,7 @@ Raymond Camden of Adobe has become a staple of Harp Weekly, and I couldn’t be 
 
 ## A client-side redirects recipe	
 
-Redirects are important if you’re moving an existing site over to Harp. We’re looking at the best way to build this into Harp—or how to build on [contributions from the community](https://github.com/sintaxi/harp/pull/263). In the meantime, there’s a new recipe on a workaround for adding [client-side redirects](https://harp.rip/recipes/client-side-redirect).
+Redirects are important if you’re moving an existing site over to Harp. We’re looking at the best way to build this into Harp—or how to build on [contributions from the community](https://github.com/sintaxi/harp/pull/263). In the meantime, there’s a new recipe on a workaround for adding [client-side redirects](https://harp.sh/recipes/client-side-redirect).
 
 ## Adding next and previous links to your posts
 

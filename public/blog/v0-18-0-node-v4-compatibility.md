@@ -14,7 +14,7 @@ Depending on your platform, you may need to preface this command with `sudo`:
 sudo npm install -g harp
 ```
 
-You can also configure npm to run [without needing it](https://docs.npmjs.com/getting-started/fixing-npm-permissions). If you haven’t tried Harp before, learn how to [get started quickly](https://harp.rip/docs/quick-start).
+You can also configure npm to run [without needing it](https://docs.npmjs.com/getting-started/fixing-npm-permissions). If you haven’t tried Harp before, learn how to [get started quickly](https://harp.sh/docs/quick-start).
 
 ## Changes in Harp v0.18.0
 

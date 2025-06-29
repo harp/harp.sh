@@ -15,7 +15,7 @@ rss(version="2.0", xmlns:atom="http://www.w3.org/2005/Atom")
           guid(isPermaLink="true") #{ uri }/blog/#{ slug }
           description.
             <![CDATA[
-              !{ partial(slug).split("</h1>")[1].replace(/src="images/g, 'src="https://harp.rip/blog/images') }
+              !{ partial(slug).split("</h1>")[1].replace(/src="images/g, 'src="https://harp.sh/blog/images') }
               <p><a href="#{ uri }/blog/#{ slug }">View this edition of the <strong>Harp Newsletter</strong> online</a></p>
             ]]>
 

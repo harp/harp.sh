@@ -8,7 +8,7 @@ In a decision that dramatically altered my sleep schedule for the remainder of t
 
 [![Casper running with Harp in the browser](images/harp-weekly-hb-casper.png)](http://casper.harp.io/)
 
-I’ve done my best to have it match the features currently available in Ghost. For example, you can create pages or posts, add custom header images, and modify the templates with [EJS](https://harp.rip/docs/development/ejs) and the styles using [Sass](https://harp.rip/docs/development/sass).
+I’ve done my best to have it match the features currently available in Ghost. For example, you can create pages or posts, add custom header images, and modify the templates with [EJS](https://harp.sh/docs/development/ejs) and the styles using [Sass](https://harp.sh/docs/development/sass).
 
 This boilerplate is a fork of the MIT Licensed [Casper](https://github.com/TryGhost/Casper); the the source code for the Harp version [is available on GitHub here.](https://github.com/kennethormandy/hb-casper)
 

@@ -66,7 +66,7 @@ This guide will help you install Harp. You’ll create and serve a simple projec
 
   You don’t need to manually run Harp in production to get your project online, however. The easiest way to get started is to use the [Harp Platform](https://www.harp.io/), which lets you create and collaborate on Harp apps right in your Dropbox.
 
-  You can also run Harp in production on [Heroku](https://harp.rip/docs/deployment/heroku), deploy Harp to [GitHub Pages](https://harp.rip/docs/deployment/github-pages), compile your app for Apache Cordova/PhoneGap, and more.
+  You can also run Harp in production on [Heroku](https://harp.sh/docs/deployment/heroku), deploy Harp to [GitHub Pages](https://harp.sh/docs/deployment/github-pages), compile your app for Apache Cordova/PhoneGap, and more.
 
 ## What’s Next
 

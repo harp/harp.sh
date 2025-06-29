@@ -14,7 +14,7 @@ As one Static Showdown entrant put it,
 
 > __[Krish Dholakiya](https://twitter.com/krrishd/status/424685237650485248)__
 
-Since your team will be on a time crunch, you might want to use a CSS framework or mixin library, too—[Harp works great with Foundation 5 or Bourbon](https://harp.rip/blog/v0-11-0-sass-support).
+Since your team will be on a time crunch, you might want to use a CSS framework or mixin library, too—[Harp works great with Foundation 5 or Bourbon](https://harp.sh/blog/v0-11-0-sass-support).
 
 ### Rob Ellis judges Static Showdown
 

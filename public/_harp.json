@@ -5,7 +5,7 @@
     "tagline": "The static web server with built-in preprocessing",
     "description": "Harp is a production-ready web server. Rapidly build static sites and client-side applications using Markdown, Sass, CoffeeScript, and more—no configuration necessary.",
     "author": "Chloi Inc.",
-    "uri": "https://harp.rip",
+    "uri": "https://harp.sh",
     "bugs": "https://github.com/sintaxi/harp/issues",
     "repository": "https://github.com/sintaxi/harp",
     "version": "0.12.1",
@@ -13,12 +13,12 @@
       "analytics": "UA-42029678-1",
       "twitter": "HarpWebServer",
       "github": "sintaxi/harp",
-      "contributing": "harp/harp.rip",
+      "contributing": "harp/harp.sh",
       "irc": "harp",
       "youtube": "https://www.youtube.com/watch?v=",
       "prism": false
     }
   },
-  "domains": ["harp.rip"],
+  "domains": ["harp.sh"],
   "tags": ["v0-12-1"]
 }

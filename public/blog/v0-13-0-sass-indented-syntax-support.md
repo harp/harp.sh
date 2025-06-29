@@ -24,11 +24,11 @@ Now you’re ready to install Harp.
 npm update -g harp
 ```
 
-You may need to use `sudo npm install -g harp` depending on your setup. (You may also want to take a look at the [quick start guide](https://harp.rip/docs/quick-start).) Now, you’re ready to try out Harp v0.13.0.
+You may need to use `sudo npm install -g harp` depending on your setup. (You may also want to take a look at the [quick start guide](https://harp.sh/docs/quick-start).) Now, you’re ready to try out Harp v0.13.0.
 
 ### Using Sass’ indented syntax
 
-I’ve put together a simple Harp boilerplate with a `.sass` stylesheet for you to try out. You can try it out using [Harp’s `--boilerplate` command](https://harp.rip/blog/v0-12-1-boilerplates). To initialise a new project in a `my-proj/` folder, from the hb-simple-sass boilerplate, use the following command:
+I’ve put together a simple Harp boilerplate with a `.sass` stylesheet for you to try out. You can try it out using [Harp’s `--boilerplate` command](https://harp.sh/blog/v0-12-1-boilerplates). To initialise a new project in a `my-proj/` folder, from the hb-simple-sass boilerplate, use the following command:
 
 ```bash
 # Create the new app
@@ -59,7 +59,7 @@ There’s more examples in [the full documentation for `.sass`](http://sass-lang
 
 Sass’ `.sass` files can still import `.scss` files, and vice-versa. This means you can still use your favourite Sass libraries like [Bourbon](http://bourbon.io/) or [Foundation 5](http://foundation.zurb.com/) even if you’d prefer to write your site or app using the indented syntax.
 
-We wrote about trying out [Harp with Foundation or Bourbon & Neat](https://harp.rip/blog/v0-11-0-sass-support), and it will work the same with the new `.sass` support.
+We wrote about trying out [Harp with Foundation or Bourbon & Neat](https://harp.sh/blog/v0-11-0-sass-support), and it will work the same with the new `.sass` support.
 
 ## Preprocessor updates
 

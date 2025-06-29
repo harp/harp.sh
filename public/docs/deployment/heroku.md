@@ -75,6 +75,6 @@ Otherwise, create a directory with an index file. You can do this with the termi
 
 ##### What’s Next?
 
-Your Harp app has been successfully deployed to Heroku. Now, you’d probably like to customize it. Read the [five simple rules](https://harp.rip/docs/development/rules) for templating a Harp application to get started quickly.
+Your Harp app has been successfully deployed to Heroku. Now, you’d probably like to customize it. Read the [five simple rules](https://harp.sh/docs/development/rules) for templating a Harp application to get started quickly.
 
 If you’d like to use a custom domain with Heroku, follow the instructions in the [Heroku Dev Center](https://devcenter.heroku.com/articles/custom-domains).

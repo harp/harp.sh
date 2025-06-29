@@ -1,8 +1,8 @@
 # Harp Weekly – Harp v0.11.1 is authsome
 
-Harp v0.11.1 was released this week, adding support for [HTTP Basic Authentication](https://harp.rip/docs/development/basicauth). This makes it easy to password protect an entire Harp app.
+Harp v0.11.1 was released this week, adding support for [HTTP Basic Authentication](https://harp.sh/docs/development/basicauth). This makes it easy to password protect an entire Harp app.
 
-![An animation showing how basic authentication works with Harp and a Project Hub.](https://harp.rip/blog/images/harp-weekly-basic-auth-project-hub.gif)
+![An animation showing how basic authentication works with Harp and a Project Hub.](https://harp.sh/blog/images/harp-weekly-basic-auth-project-hub.gif)
 
 ## Password protecting a static Project Hub
 
@@ -15,7 +15,7 @@ With basic authentication, Harp is even better for Project Hubs, as you can quic
 
 ## Install Harp
 
-More examples of how to add basic authentication are now available in [Harp’s documentation](https://harp.rip/docs/development/basicauth). You can get started by installing or updating Harp with:
+More examples of how to add basic authentication are now available in [Harp’s documentation](https://harp.sh/docs/development/basicauth). You can get started by installing or updating Harp with:
 
 ```sh
 sudo npm install -g harp
@@ -38,9 +38,9 @@ Rob Ellis also wrote about at Harp’s implicit preprocessing, and why you might
 
 ## Deploying Harp to Octohost
 
-[Octohost](https://github.com/octohost/octohost) is a [Heroku](https://harp.rip/docs/deployment/heroku)-esque platform based on Docker, with support for Node and Harp. There’s [a default application](https://github.com/octohost/harp) ready for you to clone on GitHub if you’d like to try out deploying there.
+[Octohost](https://github.com/octohost/octohost) is a [Heroku](https://harp.sh/docs/deployment/heroku)-esque platform based on Docker, with support for Node and Harp. There’s [a default application](https://github.com/octohost/harp) ready for you to clone on GitHub if you’d like to try out deploying there.
 
-[![A screenshot of the default Octohost and Harp application.](https://harp.rip/blog/images/harp-weekly-octohost.png)](https://github.com/octohost/harp)
+[![A screenshot of the default Octohost and Harp application.](https://harp.sh/blog/images/harp-weekly-octohost.png)](https://github.com/octohost/harp)
 
 ### Speeding up Docker deploys with Harp and Octohost
 
@@ -51,13 +51,13 @@ Darron Froese’s has written a post on [speeding up Docker deploys](http://blog
 
 ## Recipes: Next/Prev links, RSS feeds
 
-[The RSS feed recipe](https://harp.rip/recipes/blog-rss-feed) was improved this week, adding more details and comments.
+[The RSS feed recipe](https://harp.sh/recipes/blog-rss-feed) was improved this week, adding more details and comments.
 
 There was also a request for how to create next and previous links in a static blog using Harp. I’ve started with [an examples on GitHub](https://github.com/sintaxi/harp/issues/189), and [hb-remedy boilerplate](https://github.com/kennethormandy/hb-remedy) boilerplate has been updated to have them, too. A full recipe is forthcoming! 
 
-[![](https://harp.rip/blog/images/harp-weekly-hb-remedy-next-prev.png)](https://github.com/kennethormandy/hb-remedy)
+[![](https://harp.sh/blog/images/harp-weekly-hb-remedy-next-prev.png)](https://github.com/kennethormandy/hb-remedy)
 
-If you have any questions about getting started with Harp, or suggestions for recipes you’d like to see, the [join the #harp IRC channel](https://harp.rip/community/chat)—it’s now available directly on [harp.rip](https://harp.rip).
+If you have any questions about getting started with Harp, or suggestions for recipes you’d like to see, the [join the #harp IRC channel](https://harp.sh/community/chat)—it’s now available directly on [harp.sh](https://harp.sh).
 
 ## Next Harp Weekly
 

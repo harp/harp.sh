@@ -6,7 +6,7 @@ If you need a fast way to limit access to an entire static site or client-side a
 
 ## Install or Update Harp
 
-If you haven’t tried Harp before, there is a [helpful getting started guide](https://harp.rip/docs/quick-start). Otherwise, install or update Harp using:
+If you haven’t tried Harp before, there is a [helpful getting started guide](https://harp.sh/docs/quick-start). Otherwise, install or update Harp using:
 
 ```sh
 sudo npm install -g harp
@@ -49,7 +49,7 @@ There are no breaking changes in this release of Harp, but to try and avoid any 
 
 A change was made to Jade which no longer allows `!!!` in Jade, but we have decided not to update Harp to use this version of Jade yet. [We’re hoping to make this a smooth transition for anyone using Jade](https://github.com/visionmedia/jade/pull/1374), but if you’d like to avoid any potential issues, the safest approach would be to change `!!!` to `doctype` in your applications.
 
-The `_layout.jade` file created by `harp init` now uses `doctype` instead of `!!!` to help mitigate this problem. If you have more questions about, [feel free to ask](https://harp.rip/community).
+The `_layout.jade` file created by `harp init` now uses `doctype` instead of `!!!` to help mitigate this problem. If you have more questions about, [feel free to ask](https://harp.sh/community).
 
 ## CLI Improvements
 

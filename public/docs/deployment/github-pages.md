@@ -65,7 +65,7 @@ These five steps will quickly walk you through deploying a Harp app to a persona
 
 ##### What’s Next?
 
-Your Harp app has been successfully deployed to GitHub Pages. Now, you’d probably like to customize it. Read the [five simple rules](https://harp.rip/docs/development/rules) for templating a Harp application to get started quickly.
+Your Harp app has been successfully deployed to GitHub Pages. Now, you’d probably like to customize it. Read the [five simple rules](https://harp.sh/docs/development/rules) for templating a Harp application to get started quickly.
 
 If you’d like to use a custom domain with GitHub pages, follow the instructions in the [GitHub Pages documentation](https://help.github.com/articles/setting-up-a-custom-domain-with-pages).
 
@@ -129,6 +129,6 @@ These five steps will quickly walk you through deploying a Harp app to a project
 
 ##### What’s Next?
 
-Your Harp app has been successfully deployed to GitHub Pages. Now, you’d probably like to customize it. Read the [five simple rules](https://harp.rip/docs/development/rules) for templating a Harp application to get started quickly.
+Your Harp app has been successfully deployed to GitHub Pages. Now, you’d probably like to customize it. Read the [five simple rules](https://harp.sh/docs/development/rules) for templating a Harp application to get started quickly.
 
 If you’d like to use a custom domain with GitHub pages, follow the instructions in the [GitHub Pages documentation](https://help.github.com/articles/setting-up-a-custom-domain-with-pages).

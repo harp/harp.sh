@@ -31,11 +31,11 @@ Raymond Camden previously wrote about [moving from dynamic to static with Harp](
 
 ## Markdown and Client-side syntax highlight
 
-[Harp’s Markdown documentation page](https://harp.rip/docs/development/markdown) will now be more helpful if you’re writing a blog with code samples, or creating a documentation site. A GitHub Flavoured Markdown walk through is included, showing you how to denote what language you are using, making it perfect for a client-side syntax highlighter.
+[Harp’s Markdown documentation page](https://harp.sh/docs/development/markdown) will now be more helpful if you’re writing a blog with code samples, or creating a documentation site. A GitHub Flavoured Markdown walk through is included, showing you how to denote what language you are using, making it perfect for a client-side syntax highlighter.
 
 ## The `environment` variable
 
-Harp’s `environment` variable makes it possible for a static site to behave differently depending on its context. [The new `environment` documentation](https://harp.rip/docs/development/environment) has a simple example for altering your site, depending on whether or not Harp is in production.
+Harp’s `environment` variable makes it possible for a static site to behave differently depending on its context. [The new `environment` documentation](https://harp.sh/docs/development/environment) has a simple example for altering your site, depending on whether or not Harp is in production.
 
 ## Next Harp Weekly
 

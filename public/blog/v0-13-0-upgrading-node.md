@@ -42,4 +42,4 @@ You may need to use `sudo npm install -g harp` depending on your setup.
 
 ## What’s next?
 
-Take a look at the release notes for [Harp v0.13.0](../v0-13-0-sass-indented-syntax-support) if you’re interested in playing with the new `.sass` indented syntax preprocessor, or review [Harp’s five simple rules](https://harp.rip/docs/development/rules) and get started on your static site!
+Take a look at the release notes for [Harp v0.13.0](../v0-13-0-sass-indented-syntax-support) if you’re interested in playing with the new `.sass` indented syntax preprocessor, or review [Harp’s five simple rules](https://harp.sh/docs/development/rules) and get started on your static site!

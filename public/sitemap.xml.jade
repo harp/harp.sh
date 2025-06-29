@@ -12,12 +12,12 @@ mixin tree(head, tail)
             - depth = tail.split("/").length
             if (file == "" && depth == 2)
               url
-                loc https://harp.rip#{ tail + file }
+                loc https://harp.sh#{ tail + file }
                 changefreq weekly
                 priority 100
             else
               url
-                loc https://harp.rip#{ tail + file }
+                loc https://harp.sh#{ tail + file }
                 changefreq weekly
                 priority= (100 - ((depth - 1) * 7))
 

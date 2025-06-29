@@ -1,6 +1,6 @@
 # Harp Recipes
 
-- harp.rip/recipes
+- harp.sh/recipes
 
 ## Goals
 - find blessed way of doing things

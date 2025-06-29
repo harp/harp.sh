@@ -8,7 +8,7 @@ You can install this new version of Harp using:
 sudo npm install -g harp
 ```
 
-You may leave off `sudo` if you’re on Windows or already have admin privileges. If you’re new to Harp, [get started quickly here](https://harp.rip/docs/quick-start).
+You may leave off `sudo` if you’re on Windows or already have admin privileges. If you’re new to Harp, [get started quickly here](https://harp.sh/docs/quick-start).
 
 ## Harp v0.11.2 – Generic Multihost
 
@@ -18,13 +18,13 @@ Harp’s Multihost mode serves every subdirectory within the directory you speci
   ![Harp’s multihost list view](images/harp-weekly-generic-multihost.png)
 </figure>
 
-Once you run `harp multihost`, you can visit your local server in the browser (`localhost:9000` by default) and see the list of projects. Visiting any entry will take you to that project, served at a subdomain of `.harp.nu`. So, in this example, the `sintaxi/` directory would be available at `sintaxi.harp.nu:9000`. We’ll have more examples of how you can use [Multihost in the docs](https://harp.rip/docs/environment/multihost) this week.
+Once you run `harp multihost`, you can visit your local server in the browser (`localhost:9000` by default) and see the list of projects. Visiting any entry will take you to that project, served at a subdomain of `.harp.nu`. So, in this example, the `sintaxi/` directory would be available at `sintaxi.harp.nu:9000`. We’ll have more examples of how you can use [Multihost in the docs](https://harp.sh/docs/environment/multihost) this week.
 
 ### All updates in v0.11.2
 
-* Connect object now available when using [Harp as middleware](https://harp.rip/docs/environment/lib) – [@sintaxi](https://github.com/sintaxi)
+* Connect object now available when using [Harp as middleware](https://harp.sh/docs/environment/lib) – [@sintaxi](https://github.com/sintaxi)
 * Generic Multihost – [@silentrob](https://github.com/silentrob)
-* [`harp init`](https://harp.rip/docs/environment/init)’s default 404 page clarified – [@shovon](https://github.com/shovon)
+* [`harp init`](https://harp.sh/docs/environment/init)’s default 404 page clarified – [@shovon](https://github.com/shovon)
 * Failed compile properly errors, allowing testing with toolchains – [@remy](https://github.com/remy)
 
 The especially curious may also [review the commit log](https://github.com/sintaxi/harp/compare/55af453...master).
@@ -53,9 +53,9 @@ In the meantime, Remy has put together [a pack called Harp Static](https://githu
 Other solutions to this problem include:
 
 * Publishing your site with the [Harp Platform](https://www.harp.io). It runs Harp in production, so you automatically get clean URLs, just like with `harp server`.
-* Trying the Harp buildpack for Heroku, [featured in the previous edition of Harp Weekly](https://harp.rip/blog/harp-weekly-2014-01-27).
+* Trying the Harp buildpack for Heroku, [featured in the previous edition of Harp Weekly](https://harp.sh/blog/harp-weekly-2014-01-27).
 * Using what Eric Drechsel developed: a small shell script that removes HTML extensions and [deploys your Harp project to Amazon S3](https://gist.github.com/edrex/7492725).
 
 ## Next Harp Weekly
 
-The next edition of Harp Weekly will be right after [Static Showdown](https://harp.rip/blog/harp-weekly-2014-01-27). Make sure to post how you’re using Harp; we’ll help share your  entry through [@HarpWebServer](https://twitter.com/harpwebserver) on Twitter.
+The next edition of Harp Weekly will be right after [Static Showdown](https://harp.sh/blog/harp-weekly-2014-01-27). Make sure to post how you’re using Harp; we’ll help share your  entry through [@HarpWebServer](https://twitter.com/harpwebserver) on Twitter.

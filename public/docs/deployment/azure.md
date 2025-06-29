@@ -90,6 +90,6 @@ An more in-depth blog post about the tool can he found [here](http://www.hanselm
 
 ## What’s next?
 
-Your Harp app has been successfully deployed to Azure. Now, you’d probably like to customize it. Read the [five simple rules](https://harp.rip/docs/development/rules) for templating a Harp application to get started quickly.
+Your Harp app has been successfully deployed to Azure. Now, you’d probably like to customize it. Read the [five simple rules](https://harp.sh/docs/development/rules) for templating a Harp application to get started quickly.
 
 If you’d like to use a custom domain with Azure, follow the instructions in the [Microsoft Azure Documentation](http://azure.microsoft.com/en-us/documentation/articles/cloud-services-custom-domain-name/).

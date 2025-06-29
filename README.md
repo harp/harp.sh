@@ -1,6 +1,6 @@
-# [harp.rip](https://harp.rip)
+# [harp.sh](https://harp.sh)
 
-The [Harp](https://github.com/sintaxi/harp) app for [harp.rip](https://harp.rip), which contains the [documentation](https://harp.rip/docs), [blog](https://harp.rip/blog), and more.
+The [Harp](https://github.com/sintaxi/harp) app for [harp.sh](https://harp.sh), which contains the [documentation](https://harp.sh/docs), [blog](https://harp.sh/blog), and more.
 
 ## Running locally
 
@@ -8,8 +8,8 @@ To view or work on the website and documentation locally, run the following comm
 
 ```bash
 # Clone this repository
-git clone https://github.com/harp/harp.rip
-cd harp.rip
+git clone https://github.com/harp/harp.sh
+cd harp.sh
 
 # Install Harp and other dependencies
 npm install

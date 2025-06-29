@@ -8,12 +8,12 @@ http://medellinjs.org/
 
 https://www.npmjs.org/package/heroku-proxy
 
-https://harp.rip/docs/environment/multihost
+https://harp.sh/docs/environment/multihost
 
-https://harp.rip/docs/environment/yield
+https://harp.sh/docs/environment/yield
 
-https://harp.rip/docs/environment/current
+https://harp.sh/docs/environment/current
 
-https://harp.rip/recipes/blog-art-directed-posts
+https://harp.sh/recipes/blog-art-directed-posts
 
-https://harp.rip/recipes/templating-dynamic-selected-menu-item
+https://harp.sh/recipes/templating-dynamic-selected-menu-item

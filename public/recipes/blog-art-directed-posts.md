@@ -27,7 +27,7 @@ You might structure your site as follows:
       ▪ post-7.jade      <-- A blog post where you want more control over the markup, so used Jade
 ```
 
-Now, for the art directed posts, you can use [Harp’s `current` variable](https://harp.rip/docs/development/current). You can use it in the `_layout` file, like this:
+Now, for the art directed posts, you can use [Harp’s `current` variable](https://harp.sh/docs/development/current). You can use it in the `_layout` file, like this:
 
 ```jade
 doctype
@@ -70,7 +70,7 @@ You might structure your site as follows:
       ▪ post-7.ejs       <-- A blog post where you want more control over the markup, so used EJS
 ```
 
-Now, for the art directed posts, you can use [Harp’s `current` variable](https://harp.rip/docs/development/current). You can use it in the `_layout` file, like this:
+Now, for the art directed posts, you can use [Harp’s `current` variable](https://harp.sh/docs/development/current). You can use it in the `_layout` file, like this:
 
 ```ejs
 <!DOCTYPE html>

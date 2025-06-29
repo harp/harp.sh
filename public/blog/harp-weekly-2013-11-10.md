@@ -2,11 +2,11 @@
 
 ## Harp v0.10.0
 
-[Harp v0.10.0](https://harp.rip/blog/v0-10-0-200-catch-all) was released last week, making Harp even better for developers working on client-side applications. If you’re using  AngularJS, Backbone, Ember.js, or a similar library, Harp v0.10.0 is for you. [Read more about the new version here.](https://harp.rip/blog/v0-10-0-200-catch-all)
+[Harp v0.10.0](https://harp.sh/blog/v0-10-0-200-catch-all) was released last week, making Harp even better for developers working on client-side applications. If you’re using  AngularJS, Backbone, Ember.js, or a similar library, Harp v0.10.0 is for you. [Read more about the new version here.](https://harp.sh/blog/v0-10-0-200-catch-all)
 
 Update or install Harp using `npm install harp -g`. You may need to use `sudo npm install harp -g` depending on your system.
 
-This release also introduced an API change that is a one-character fix, but will impact your application if it iterates over `_data.json` metadata. More details are in [the v0.10.0 release post](https://harp.rip/blog/v0-10-0-200-catch-all).
+This release also introduced an API change that is a one-character fix, but will impact your application if it iterates over `_data.json` metadata. More details are in [the v0.10.0 release post](https://harp.sh/blog/v0-10-0-200-catch-all).
 
 ## Harp Platform is now open
 
@@ -18,7 +18,7 @@ Harp Platform uses a number of other open source libraries in addition to [Harp]
 
 ## Publish Anywhere
 
-Harp Platform makes it easy to publish Harp applications, but where and how you deploy your application is completely up to you. There are guides available for deploying Harp applications to [GitHub Pages](https://harp.rip/docs/deployment/github-pages), [Heroku](https://harp.rip/docs/deployment/heroku), and [Open Shift](https://www.openshift.com/blogs/day-8-harp-the-modern-static-web-server) with more to come.
+Harp Platform makes it easy to publish Harp applications, but where and how you deploy your application is completely up to you. There are guides available for deploying Harp applications to [GitHub Pages](https://harp.sh/docs/deployment/github-pages), [Heroku](https://harp.sh/docs/deployment/heroku), and [Open Shift](https://www.openshift.com/blogs/day-8-harp-the-modern-static-web-server) with more to come.
 
  There are guides available for deploying Harp apps to GitHub Pages, Heroku, and Open Shift, with more to come.
 
