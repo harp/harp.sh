@@ -6,11 +6,22 @@ This recipe shows you how to add Google Analytics to your Harp application in a 
 
 First, ensure you've actually created the site details in your Google Analytics account. You'll need to go to your *Property Settings* and find the *Tracking Id* value.
 
-## Harp
+### ID
+
+First, set the ID value inside globals in _harp.json or harp.json:
+
+```json
+{
+  "globals": {
+    "service": {
+      "analytics": "UA-XXXX"
+    }
+  }
+}
+```
+Then, create a partial to include Google's embed code.
 
 ### Using Jade
-
-First, create a partial to include Google's embed code. 
 
 _shared/analytics.jade
 
@@ -26,19 +37,9 @@ if service.analytics
   ga('send', 'pageview');
 ```
 
-Then, set the values in _harp.json or harp.json:
-
-```json
-"service": {
-  "analytics": "UA-XXXX"
-}
-```
-
 ### Using EJS
 
-First, create a partial to include Google's embed code. 
-
-_shared/analytics.jade
+_shared/analytics.ejs
 
 ```ejs
 <% if(service && service.analytics) { %>
@@ -54,5 +55,3 @@ _shared/analytics.jade
 </script>
 <% } %>
 ```
-Then create the same _harp.json or harp.json described above.
-
