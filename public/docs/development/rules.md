@@ -90,7 +90,7 @@ Rather than offering a complex feature set, Harp has simple rules on how it work
     If you like, you may explicitly specify which `mime type` the file will be served with, by prefixing the extension with the desired extension.
 
     ```
-    myfile.jade          ->        myfile.html
+    myfile.html.jade     ->        myfile.html
     myfile.xml.jade      ->        myfile.xml
     ```
 
