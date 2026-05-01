@@ -8,6 +8,10 @@
     "title": "CLI",
     "description": "Using the harp command to serve and compile projects"
   },
+  "claude-code": {
+    "title": "Claude Code",
+    "description": "Install the harp-skills package so Claude Code understands your Harp project"
+  },
   "lib": {
     "title": "Lib",
     "description": "Using Harp as Middleware, directly embedded in your Express App",
