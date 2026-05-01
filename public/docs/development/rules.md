@@ -2,13 +2,13 @@
 
 ### Five simple rules you can count on when making templates for a Harp Application.
 
-Rather than offering a complex feature set, Harp has simple rules on how it works. Harp is a katana, not a swiss army knife. By understanding the rules, one will know how to effectively use harp.
+Rather than offering a complex feature set, Harp has simple rules on how it works. Harp is a katana, not a swiss army knife. By understanding the rules, you'll know how to use Harp effectively.
 
 1. ## Convention over Configuration.
 
-    Harp will function with as little as a `public/index.html` file and **doesn't require any configuration** to get going. To add more routes just add more files. All harp's features are based off conventions that you will discover by learning the rest of these rules.
+    Harp will function with as little as a single `index.html` (or `index.ejs`, or `index.md`) file and **doesn't require any configuration** to get going. To add more routes, just add more files. All of Harp's features are based on conventions you'll discover by learning the rest of these rules.
 
-    Harp is about offering a sane development framework which follows established best practices. Harp is not designed to be everything to everyone, but what it does, it does perfectly.
+    Harp is about offering a sane development framework that follows established best practices. Harp is not designed to be everything to everyone, but what it does, it does perfectly.
 
     ### Design Rationale
 
@@ -17,102 +17,112 @@ Rather than offering a complex feature set, Harp has simple rules on how it work
     ### Anatomy of a typical Harp application
 
     ```
-    myapp.harp.io/                <-- root of your application
-      |- harp.json                <-- configuration, globals goes here.
-      +- public/                  <-- your application assets belong in the public dir
-         |- _layout.jade          <-- optional layout file
-         |- index.jade            <-- must have an index.html or index.jade file
-         |- _shared/              <-- arbitrary directory for shared partials
-         |   +- nav.jade          <-- a partial for navigation
-         +- articles/             <-- pages in here will have "/articles/" in URL
-             |- _data.json        <-- articles metadata goes here
-             +- hello-world.jade  <-- should have at least one .html,  .jade, .md or .ejs file.
+    mysite/                     <-- the directory you point harp at
+      |- _harp.json             <-- optional config; globals, basic auth, env-var substitution
+      |- _layout.ejs            <-- optional layout, wraps your pages
+      |- index.ejs              <-- must have an index file (.html, .ejs, .md, or .jade)
+      |- about.md               <-- prose pages can be Markdown
+      |- _partials/             <-- arbitrary directory for shared partials
+      |   `- _nav.ejs           <-- partial for navigation
+      `- articles/              <-- nested directory; pages here have "/articles/" in URL
+          |- _data.json         <-- per-directory metadata
+          `- hello-world.md     <-- a content page
     ```
 
-2. ## The root directory is public.
+    Run with `harp ./mysite` to serve locally, or `harp ./mysite ./www` to compile to a directory of static files. See the [CLI reference](/docs/environment/cli) for more.
 
-    Harp is a web server, so it can serve any directory, whether it contains a large Harp app, or a single `index.html` file.
+2. ## The directory you serve is the root.
 
-    ```
-    myapp.harp.io/
-        |- index.html           <-- will be served
-    ```
-
-    ### Framework style
-
-    Optionally, a Harp application can also run in _Framework Style_. When a project contains a `harp.json` file and an explicit `public/` directory, the `public/` directory will be served instead of the root. In Framework Style, Public assets belong in the `public/` directory. Assets outside of the public directory will not be served.
+    Harp is a web server. Whatever directory you point it at becomes the served root — its name doesn't matter (`public/`, `src/`, `mysite/`, anything works). The simplest possible Harp application is a single `index.html` in any folder:
 
     ```
-    myapp.harp.io/
-      |- harp.json                <-- required harp.json file
-      |- README.md                <-- won't be served
-      |- secrets.txt              <-- won't be served
-      +- public/                  <-- explicit public directory
-          +- index.html           <-- will be served
+    mysite/
+      `- index.html             <-- will be served at /
     ```
+
+    Drop a `_harp.json` into that same directory when you want site-wide globals, HTTP Basic Auth, or `$ENV_VAR` substitution. Because the filename starts with `_`, the config file isn't itself served (see Rule 3).
+
+    ### Framework Style (legacy)
+
+    Older Harp applications use a parent directory containing a `harp.json` file alongside a `public/` subdirectory. When `harp.json` is present at the top level, Harp serves the `public/` subdirectory rather than the project root, and assets outside `public/` aren't served.
+
+    ```
+    project-root/
+      |- harp.json              <-- legacy config file
+      |- README.md              <-- won't be served (outside public/)
+      |- secrets.txt            <-- won't be served
+      `- public/                <-- served root
+          `- index.html
+    ```
+
+    Both styles still work. New projects should prefer the simpler form above: a single source directory, with an optional `_harp.json` directly inside it.
 
 3. ## Ignore those which start with underscore.
 
-    Any files or directories that begin with underscore will be ignored by the server. This is the recommended naming convention for layout and partial files. Harp will honour this rule for both files and directories.
+    Any files or directories that begin with an underscore are ignored by the server and excluded from the compiled output. This is how Harp marks layouts, partials, metadata, and configuration as internal.
 
     ### Design Rationale
 
-    By having a simple convention, it is easy to specify and identify which assets will not be served to the end user.
+    By having a simple convention, it's easy to specify and identify which assets will not be served to the end user.
 
     ### Example
 
     ```
-    myapp.harp.io/
-      +- public/
-          |- index.html            <-- will be served
-          |- _some-partial.jade    <-- won't be served
-          +- _shared-partials/     <-- won't be served
-              +- nav.jade
+    mysite/
+      |- _harp.json             <-- won't be served (config)
+      |- _layout.ejs            <-- won't be served (layout)
+      |- index.ejs              <-- will be served at /
+      |- about.md               <-- will be served at /about
+      `- _partials/             <-- won't be served (entire directory)
+          `- _nav.ejs
     ```
 
 4. ## Dead simple asset pipeline.
 
-    Harp serves jade, ejs, stylus, less and coffee script. Just add an extension of `.jade`, `.ejs`, `.styl`, `.less` or `.coffee` to your file and harp's asset pipeline will do the rest.
-
-    Harp automatically pre-compiles, just add the file extension, and reference its counterpart.
+    Harp compiles preprocessor source files to standard web output on the fly. Just add the source extension to your filename — no configuration, no build step.
 
     ```
+    myfile.ejs           ->        myfile.html
     myfile.md            ->        myfile.html
     myfile.jade          ->        myfile.html
-    myfile.ejs           ->        myfile.html
-    myfile.less          ->        myfile.css
-    myfile.styl          ->        myfile.css
+
     myfile.scss          ->        myfile.css
     myfile.sass          ->        myfile.css
+    myfile.less          ->        myfile.css
+    myfile.styl          ->        myfile.css
+
     myfile.coffee        ->        myfile.js
+    myfile.cjs           ->        myfile.js
+    myfile.jsx           ->        myfile.js
     ```
 
-    If you like, you may explicitly specify which `mime type` the file will be served with, by prefixing the extension with the desired extension.
+    `.cjs` and `.jsx` go through esbuild, so modern JavaScript and JSX work without any configuration.
+
+    If you like, you may explicitly specify the output extension by prefixing the source extension with the desired one:
 
     ```
     myfile.jade          ->        myfile.html
-    myfile.xml.jade      ->        myfile.xml
+    myfile.xml.ejs       ->        myfile.xml
     ```
 
-    This is optional, however, as every extension already has a default `mime type`.  Both of the following will be served as `myfile.css` , for example:
+    This is optional; every source extension has a default output type. Both of the following serve at `myfile.css`:
 
     ```
     myfile.less          ->        myfile.css
     myfile.css.less      ->        myfile.css
     ```
 
-5. ## Flexible metadata
+5. ## Flexible metadata.
 
-    Your files named `_data.json` are special and make data available to templates.
+    Files named `_data.json` are special and make data available to templates in the same directory.
 
     ```
-    myapp.harp.io/
-      +- public/
-          |- index.jade
-          +- articles/
-              |- _data.json        <-- articles metadata goes here
-              |- hello-world.jade  <-- hello world article
-              +- hello-brazil.jade <-- hello brazil article
+    mysite/
+      |- index.ejs
+      `- articles/
+          |- _data.json         <-- articles metadata
+          |- hello-world.md     <-- hello world article
+          `- hello-brazil.md    <-- hello brazil article
     ```
 
     Your `_data.json` file may contain something like this:
@@ -120,28 +130,25 @@ Rather than offering a complex feature set, Harp has simple rules on how it work
     ```json
     {
       "hello-world": {
-        "title": "Hello World.",
-        "date": "Feb 28, 2013"
+        "title": "Hello World",
+        "date": "2026-02-28"
       },
       "hello-brazil": {
-        "title": "Hello Brazil.",
-        "date": "March 4, 2013"
+        "title": "Hello Brazil",
+        "date": "2026-03-04"
       }
     }
     ```
 
-    This information will be available in all templates as:
+    Because the `hello-world` key matches the filename `hello-world.md`, those variables become available inside that template as plain locals (`<%= title %>`, `<%= date %>`). This works in `.ejs`, `.jade`, **and** `.md` files alike.
 
-    ```js
-    public.articles._data
-    ```
+    The whole metadata object is also available globally as `public.articles._data`. That's how an index page enumerates the entries — for example, in EJS:
 
-    Additionally, because `hello-world` matches the filename of `hello-world.jade`, these variables will be made available in the `hello-world.jade` template when being served. This object is also available in all the templates as `public.articles._data.hello-world`.
-
-    In our templates we may iterate over the articles with the following in your Jade file&hellip;
-
-    ```jade
-    for article, slug in public.articles._data
-      a(href="/articles/#{ slug }")
-        h2= article.title
+    ```ejs
+    <% for (var slug in public.articles._data) { %>
+      <% var article = public.articles._data[slug] %>
+      <a href="/articles/<%= slug %>">
+        <h2><%= article.title %></h2>
+      </a>
+    <% } %>
     ```
