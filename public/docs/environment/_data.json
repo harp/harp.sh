@@ -1,32 +1,7 @@
 {
   "install": {
     "title": "Install",
-    "description": "Installing Harp (npm install -g harp)",
-    "release": "0.1.0"
-  },
-  "init": {
-    "title": "Init",
-    "description": "Using the Command Line Interface to create a new application (harp init)",
-    "release": "0.8.7"
-  },
-  "server": {
-    "title": "Server",
-    "description": "Using the CLI to run the web server (harp server)"
-  },
-  "multihost": {
-    "title": "Multihost",
-    "next": "compile",
-    "description": "Hosting multiple Harp Apps using Multihost (harp multihost)",
-    "release": "0.7.2"
-  },
-  "compile": {
-    "title": "Compile",
-    "description": "Compiling your project to static assets—HTML, CSS & JavaScript (harp compile)",
-    "release": "0.6.2"
-  },
-  "update": {
-    "title": "Update",
-    "description": "Updating to the latest version of Harp through npm (npm update -g harp)",
+    "description": "Installing and updating Harp (npm install -g harp)",
     "release": "0.1.0"
   },
   "lib": {

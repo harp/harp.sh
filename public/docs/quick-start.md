@@ -70,4 +70,4 @@ This guide will help you install Harp. You’ll create and serve a simple projec
 
 ## What’s Next
 
-This is just a taste of what Harp can do for you. For example, the default Harp application also includes a `.less` file that is automatically served as `.css`. Being able to change the CSS just by editing the LESS file—no configuration necessary—makes the default app a good starting point for your own project; [read more about initializing the default Harp app.](/docs/environment/init)
+This is just a taste of what Harp can do for you. For example, you can drop a `.less` (or `.scss`, `.styl`, `.sass`) file into your project and it’s automatically served as `.css` — no configuration necessary. The same goes for `.coffee`, `.cjs`, and `.jsx` source files, which compile to `.js`.

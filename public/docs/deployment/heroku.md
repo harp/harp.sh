@@ -14,9 +14,7 @@ heroku login
 
 ## Create or use an existing application
 
-Now you’re ready to being modifying your Harp app to prepare it for Heroku. If you don’t have an existing app, or would like to try out deployment with the default app, you may [use `harp init` to initialize a new application](/docs/environment/init).
-
-Otherwise, create a directory with an index file. You can do this with the terminal, too:
+Now you’re ready to begin modifying your Harp app to prepare it for Heroku. If you don’t have an existing app, create a directory with an `index.ejs` (or `index.md`) file. You can do this from the terminal:
 
   ```sh
   mkdir my-harp-app

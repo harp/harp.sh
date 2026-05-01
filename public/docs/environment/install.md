@@ -24,28 +24,46 @@ If you are using Windows, Node.js will have come with the Node.js Command Prompt
 npm install -g harp
 ```
 
-**Thats it!** Now you are ready to [start the harp webserver](/docs/environment/server).
+**That’s it!** You can verify the install with:
+
+```bash
+harp -v
+```
+
+To start serving any folder of templates, run `harp` against that directory:
+
+```bash
+harp ./mysite                  # serves at http://localhost:9000
+harp .                         # serves the current directory
+harp ./mysite --port 3000      # custom port
+```
+
+To compile a project to a directory of static files, give it a destination:
+
+```bash
+harp ./mysite ./www
+```
 
 ## Updating Harp
 
-Updating to the latest version of Harp is the same command as installing Harp. Run the following in your terminal:
+To update to the latest release, run the same install command again — npm replaces the existing global version in place:
 
-```sh
+```bash
 npm install -g harp
 ```
 
-You may need to preface this command with `sudo`, depending on your setup.
+You may need to preface this command with `sudo`, depending on your setup. Verify the new version with `harp -v`.
 
 ### Troubles upgrading? Try clearing your cache
 
-If you’re having trouble upgrading to the latest version of Harp, especially if you have recently upgraded npm, or are getting an error message like `Error: Cannot find module 'minify'`, you might simply need to clear your npm cache:
+If you’re having trouble upgrading — especially if you have recently upgraded npm, or are getting an error message like `Error: Cannot find module 'minify'` — clear the npm cache and reinstall:
 
-```
+```bash
 npm uninstall -g harp
-npm cache clear
+npm cache clean --force
 npm install -g harp
 ```
 
-You may need to use `sudo` before any of those, depending on your setup. It’s possible that an older dependency of Harp is cached on your system and not finding the new version or something. The `npm cache clear` part could take a while, depending on how much is cached. That should fix the problem, however!
+You may need to use `sudo` before any of those, depending on your setup. The `npm cache clean` part can take a moment depending on how much is cached.
 
 [Need to uninstall Harp?](/docs/environment/uninstall)
