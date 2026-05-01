@@ -1,69 +1,29 @@
 # Yield
 
-`yield` is a variable that includes that a particular path’s contents. For example, when visiting `/blog`, the entire contents of `blog/index.jade` would be available within the variable `yield`.
+`yield` is a variable that holds the rendered contents of the current page. When visiting `/blog`, the rendered contents of `blog/index.ejs` (or `.md`/`.jade`) become available as `yield` inside the wrapping layout.
 
 ## Why?
 
-When using [Layouts](layout) and [Partials](partial), you will want to work with the content from the page that the Layout or Partial is wrapping. This content is contained within the variable `yield`, and can be placed wherever you’d like in a Partial or Layout.
+When using [Layouts](layout) and [Partials](partial), you’ll want to control where the wrapped page’s content appears. That content is contained in the `yield` variable, which you can place anywhere in your layout template.
 
 ## Usage
 
-`yield` will be available as a variable in any `_layout.jade` or `_layout.ejs` file. It will also be available in any explicit layout set in a `_data.json` file, which [is covered in the Layouts documentation](layout). It’s also possible to use the `yield` variable in any [Partial](partial).
-
-## Jade Example
-
-Using the following directory structure:
-
-```
-myproject/
-  |- _layout.jade
-  |- index.jade
-  |- about.md
-```
-
-When visiting `/about`, the content from the `about.md` file needs to be shown. Likewise, visting `/index` should show the content in `index.jade`. Both these files will be wrapped by `_layout.jade` first.
-
-Therefore, in `_layout.jade`, you need to indicate where the output, or “yield” will go:
-
-```jade
-doctype
-html
-  head
-    title Example
-  body
-    != yield
-```
-
-Now, the content from whatever page you are visiting will be included in the `<body>` element. Note that in Jade, the `!=` (instead of just `=`) indicates you don’t want the HTML to be escaped.
-
-If you wanted to move where the output was in this template, it is now simply a matter of moving the `yield` variable:
-
-```jade
-doctype
-html
-  head
-    title Example
-  body
-    article
-      h1 Hello, world
-      section
-        != yield
-```
+`yield` is available as a variable inside `_layout.ejs` (or `_layout.jade`), and inside any explicit layout set via `_data.json` ([covered in Layouts](layout)). It is **not** available inside the page being wrapped — only inside the layout (or a partial called from the layout).
 
 ## EJS Example
 
-Using the following directory structure:
+Given the following directory structure:
 
 ```
-myproject/
+mysite/
   |- _layout.ejs
   |- index.ejs
-  |- about.md
+  `- about.md
 ```
 
-When visiting `/about`, the content from the `about.md` file needs to be shown. Likewise, visting `/index` should show the content in `index.ejs`. Both these files will be wrapped by `_layout.ejs` first.
+When visiting `/about`, the content from `about.md` needs to be shown. Visiting `/`, similarly, needs to show the content from `index.ejs`. Both pages are wrapped by `_layout.ejs`.
 
-Therefore, in `_layout.ejs`, you need to indicate where the output, or “yield” will go:
+In `_layout.ejs`, the `yield` variable indicates where the page content goes:
 
 ```ejs
 <!DOCTYPE html>
@@ -77,9 +37,9 @@ Therefore, in `_layout.ejs`, you need to indicate where the output, or “yield�
 </html>
 ```
 
-Now, the content from whatever page you are visiting will be included in the `<body>` element. Note that in EJS, opening tags with `<%-` (instead of just `<%=`) indicates you don’t want the HTML to be escaped.
+The `<%- yield %>` tag (with the dash) outputs the page content **unescaped**. Using `<%= yield %>` instead would HTML-escape the content, producing visible markup tags on the page. This is the most common Harp bug — always use the dash for `yield` and `partial(...)`.
 
-If you wanted to move where the output was in this template, it is now simply a matter of moving the `yield` variable:
+To move where the content appears, just move the `yield` variable:
 
 ```ejs
 <!DOCTYPE html>
@@ -98,8 +58,32 @@ If you wanted to move where the output was in this template, it is now simply a 
 </html>
 ```
 
+## Jade Example
+
+The same project, with Jade:
+
+```
+mysite/
+  |- _layout.jade
+  |- index.jade
+  `- about.md
+```
+
+In `_layout.jade`:
+
+```jade
+doctype html
+html
+  head
+    title Example
+  body
+    != yield
+```
+
+The `!=` (instead of `=`) tells Jade not to HTML-escape the output — same idea as the EJS dash. Move `yield` wherever you want the content to appear.
+
 ## Also see
 
 - [Layouts](layout)
-- [Jade](jade)
 - [EJS](ejs)
+- [Jade](jade)

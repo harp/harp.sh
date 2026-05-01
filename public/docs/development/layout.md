@@ -6,218 +6,199 @@ A Layout is a common template that includes all content except for one main cont
 * [Creating Layouts with Jade](#jade)
 * [Multiple Layouts](#multiple-layouts)
 * [Explicit Layouts](#explicit-layouts)
-* [No Layout](#no-layout)
+* [Opting out of a Layout](#no-layout)
+* [Nested Layouts](#nested-layout)
 
 ## Why?
 
-Often sites and apps will have common headers and footers and the only area that needs to change is the body. This is an ideal use case for a layout.
+Most sites have common headers, footers, and navigation that should appear on every page. A Layout lets you define that chrome once and have Harp wrap each page with it automatically.
 
 ## Usage
 
-A Layout requires a layout file, written in EJS or Jade, and [a `yield` property](yield) to tell Harp where to insert the content.
+A Layout is a template file named `_layout.ejs` (or `_layout.jade`) placed in the directory whose pages it should wrap. Inside it, [a `yield` variable](yield) marks where the page content gets inserted.
 
-<h2 id="ejs">Example using EJS Templating</h2>
+<h2 id="ejs">Example using EJS</h2>
 
-Given a really simple app / project with this structure:
+Given a project with this structure:
 
 ```
-myapp.harp.io/
+mysite/
   |- _layout.ejs
-  +- index.ejs
+  `- index.ejs
 ```
 
-**_layout.ejs**
+**`_layout.ejs`**:
 
 ```ejs
+<!DOCTYPE html>
 <html>
   <head>
     <title>My Site</title>
-    <script src="/javascripts/jquery.js">
-    </script><script src="/javascripts/app.js"></script>
   </head>
   <body>
-	<%- yield %>
-	<div id="footer">
+    <%- yield %>
+    <footer>
       <p>Copyright © foobar</p>
-    </div>
+    </footer>
   </body>
 </html>
 ```
 
-**index.ejs**
+The `<%- yield %>` tag (note the dash) outputs the wrapped page content unescaped. Using `<%= yield %>` instead would HTML-escape the content, producing visible markup tags on the page. The same dash rule applies to `<%- partial(...) %>`.
+
+**`index.ejs`**:
 
 ```ejs
 <h1>My Site</h1>
 <p>Welcome to my very first site.</p>
 ```
 
-The final result:
+Final result:
 
 ```html
+<!DOCTYPE html>
 <html>
   <head>
     <title>My Site</title>
-    <script src="/javascripts/jquery.js">
-    </script><script src="/javascripts/app.js"></script>
   </head>
   <body>
-	<h1>My Site</h1>
-	<p>Welcome to my very first site.</p>
-	<div id="footer">
-      <p>Copyright (c) foobar</p>
-    </div>
+    <h1>My Site</h1>
+    <p>Welcome to my very first site.</p>
+    <footer>
+      <p>Copyright © foobar</p>
+    </footer>
   </body>
 </html>
 ```
 
-<h2 id="jade">Example using Jade Templating</h2>
+<h2 id="jade">Example using Jade</h2>
 
-Harp allows you to apply a `.jade` file extension on your layout as well. Mixing and matching templates is also acceptable such as in the following case where we have a `_layout.jade` and `index.ejs`.
-
-Given a really simple app / project with this structure:
+Layouts can also be `.jade` files, and you can mix and match: a `_layout.jade` can wrap an `index.ejs` page, or vice versa.
 
 ```
-myapp.harp.io/
-	|- _layout.jade
-	+- index.jade
+mysite/
+  |- _layout.jade
+  `- index.jade
 ```
 
-**_layout.jade**
+**`_layout.jade`**:
 
 ```jade
-doctype
+doctype html
 html
   head
     title My Site
-    script(src="/javascripts/jquery.js")
-    script(src="/javascripts/app.js")
   body
-  	!= yield
-	#footer
-	  p Copyright (c) foobar
+    != yield
+    footer
+      p Copyright © foobar
 ```
 
-**index.jade**
+In Jade, `!= yield` (instead of `= yield`) tells the template engine not to HTML-escape — same idea as the `<%- %>` dash in EJS.
+
+**`index.jade`**:
 
 ```jade
 h1 My Site
 p Welcome to my very first site.
 ```
 
-The final result:
-
-```html
-<html>
-  <head>
-    <title>My Site</title>
-    <script src="/javascripts/jquery.js">
-    </script><script src="/javascripts/app.js"></script>
-  </head>
-  <body>
-	<h1>My Site</h1>
-	<p>Welcome to my very first site.</p>
-	<div id="footer">
-      <p>Copyright (c) foobar</p>
-    </div>
-  </body>
-</html>
-```
-
 <h2 id="multiple-layouts">Multiple Layouts</h2>
 
-You can take advantage of Layouts in multiple locations through your application. In the following example, there is a directory of articles which you’d like to have a different layout than on the main page of your site.
+Subdirectories can have their own `_layout` files that override the parent layout for pages inside that subtree. In the following example, the articles directory uses its own layout:
 
 ```
-myapp.harp.io/
-	|- _layout.ejs
-	|- index.ejs
-	|- about.md
-	+- articles/
+mysite/
+  |- _layout.ejs
+  |- index.ejs
+  |- about.md
+  `- articles/
       |- _layout.ejs
       |- article-one.md
-      +- article-two.md
+      `- article-two.md
 ```
 
-Here, `index.ejs` and `about.md` will use the `_layout.ejs` file in the root of the app. Anything in the articles directory&mdash;in this case, `article-one.md` and `article-two.md`&mdash;will use the `_layout.ejs` in the same directory.
+`index.ejs` and `about.md` use the root `_layout.ejs`. Anything in `articles/` — `article-one.md` and `article-two.md` — uses the `_layout.ejs` in that subdirectory instead.
 
 <h2 id="explicit-layouts">Explicit Layouts</h2>
 
-Layouts other than `_layout` can be specified in a `_data.json`. This is useful if you need even finer control of Layouts, or if you want to name your Layout something other than `_layout`.
+Layouts other than `_layout` can be specified per-page in a `_data.json` entry. This is useful for finer control or non-standard naming.
 
 ```
-myapp.harp.io/
-	|- _layout.ejs
-	|- index.ejs
-	|- about.md
-	+- articles/
+mysite/
+  |- _layout.ejs
+  |- index.ejs
+  `- articles/
       |- _data.json
-      |- _an-example-layout.ejs
-      |- _another-one.jade
+      |- _featured-layout.ejs
+      |- _another-layout.ejs
       |- article-one.md
-      +- article-two.md
+      `- article-two.md
 ```
 
-Here, it’s possible to make `article-one.md` use `_an-example-layout.ejs` by specifying `layout` in the `_data.json` file in that folder:
+In `articles/_data.json`:
 
 ```json
 {
   "article-one": {
-    "layout": "_an-example-layout",
+    "layout": "_featured-layout",
     "title": "Example Title"
   },
   "article-two": {
-    "layout": "_another-one",
+    "layout": "_another-layout",
     "title": "Another Example Title"
   }
 }
 ```
 
-Now, each article will use the specified Layout.
+Each article uses its specified layout. The `layout` value is a path **without** the file extension. Path resolution:
 
-<h2 id="no-layout">Opt out of a Layout</h2>
+- Relative to the page’s own directory first. `"layout": "_featured-layout"` looks for `articles/_featured-layout.*`.
+- Falls back to the project root if not found locally. `"layout": "../../_layout"` works for explicit parent traversal.
 
-It’s possible for a file to be exempt from Layouts by using `"layout": false`.
+One automatic exemption worth knowing: pages that emit a `.json` extension (e.g., `feed.json.ejs`) skip layouts entirely — useful for API routes and feeds, no `"layout": false` needed.
 
-Take the following app as an example:
+<h2 id="no-layout">Opting out of a Layout</h2>
+
+To exempt a single page from layout wrapping, set `"layout": false` in `_data.json`:
 
 ```
-myapp.harp.io/
+mysite/
   |- _data.json
   |- _layout.ejs
   |- index.ejs
-  +- about.md
+  `- about.md
 ```
 
-Adding the following to the `_data.json` file will make `about.md` render as plain HTML, never passing through a layout.
+`_data.json`:
 
 ```json
 {
-	"about": {
-		"layout": false
-	}
+  "about": {
+    "layout": false
+  }
 }
 ```
 
-Since this has only been specified for the About page, `index.ejs` will continue to use `_layout.ejs` as a Layout.
+`about.md` renders as plain HTML without the layout. Other pages (like `index.ejs` here) continue to use `_layout.ejs`.
+
+The `layout` key is not inherited by partials, so partials never accidentally get wrapped — only pages do.
 
 <h2 id="nested-layout">Nested Layouts</h2>
 
-If you are taking advantage of Harp’s built-in support for [Jade](jade), you may use [Jade’s Block and Extends](http://www.devthought.com/code/use-jade-blocks-not-layouts/) features to create nested layouts.
-
-Harp itself doesn’t have a built-in way to create nested layouts, as [`partial()`] already provides ways around this. For example, `_layout.ejs` might look like this:
+Harp doesn’t have a built-in nested-layout mechanism, but `partial()` plus the [`current`](current) object lets you achieve the same thing. For example, `_layout.ejs` might look like this:
 
 ```ejs
-<!-- If the current page is blog/ but not blog/index.ejs… -->
-  <% if(current.path[0] == "blog" && current.source !== 'index') { %>
-    <!-- Render the partial blog/_nest -->
-    <%- partial(current.path[0] + "/_nest") %>
-  <% } else { %>
-  <!-- Otherwise, render the yield -->
-      <%- yield %>
-  <% } %>
+<!-- If the current page is inside blog/ but isn't blog/index... -->
+<% if (current.path[0] === "blog" && current.source !== "index") { %>
+  <!-- Wrap the page in a per-section partial -->
+  <%- partial(current.path[0] + "/_nest") %>
+<% } else { %>
+  <%- yield %>
+<% } %>
 ```
 
-This allows you to put a `_nest.ejs` [partial](partial) into the `blog/` directory, giving you the opportunity to create a nested layout. By including [`yield`] in the `_nest.ejs` partial, the contents of the page you’re trying to render will be available in this `_nest.ejs` partial. For example, `blog/_nest.ejs` might look like this:
+Then `blog/_nest.ejs` can wrap the page content with additional chrome, using `<%- yield %>` itself:
 
 ```ejs
 <article>
@@ -225,10 +206,6 @@ This allows you to put a `_nest.ejs` [partial](partial) into the `blog/` directo
 </article>
 ```
 
-Now, the `blog/` index page will render normally, while any blog posts like `blog/hello-world` will have their contents wrapped in the `<article>` tag you specified in the partial. There is a full example of this on [the hb-simurai](https://github.com/kennethormandy/hb-simurai) Harp boilerplate, which you can try out by running the following command:
+Now the `blog/` index renders normally, while individual blog posts (e.g., `blog/hello-world`) get an extra `<article>` wrapper. The `_nest.ejs` file could be named anything; it’s a regular [partial](partial).
 
-```
-harp init -b kennethormandy/hb-simurai my-nested-example
-```
-
-Note that the `_nest.ejs` file could be named anything you’d like, it is simply a regular [partial](partial).
+If you’re using [Jade](jade), you can also reach for Jade’s native `block` and `extends` features to compose nested layouts.
