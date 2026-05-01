@@ -1,16 +1,21 @@
 # Environment
 
-The Harp web server can run both locally and in production mode. The `environment` variable is a string that returns `"production"` or `"development"` depending on this correct context.
+The Harp web server can run both locally and in production mode. The `environment` variable is a template global that resolves to `"production"` or `"development"` depending on the current context.
 
 ## Why
 
-The Harp web server can run locally, for developing, or in production mode, as a production-ready web server. With the `environment` variable, your Harp app can act differently whether or not you are running it locally.
+The Harp web server can run locally for developing, or in production mode as a production-ready web server. With the `environment` variable, your Harp app can behave differently depending on which mode it’s running in.
 
-This is perfect for creating draft posts in a static blog, for example, or loading development resources only while developing a client side application.
+This is perfect for creating draft posts in a static blog, for example, or loading development-only resources while building a client-side application.
 
 ## Use
 
-The `environment` variable opens many possibilities: your blog can behave one way locally, and another way when it’s published on the [Harp Platform](https://www.harp.io) or served by Harp in production mode. Additionally, [`harp compile`, which flattens your blog into static HTML, CSS, and JavaScript](../environment/compile), is considered to be a `production` environment. This means that anything intended for `production` will still occur even when you’re hosting static files.
+The value of `environment` is determined at runtime:
+
+* When running `harp <source>` to serve, `environment` is `"development"` unless you set `NODE_ENV=production`.
+* When running `harp <source> <build>` to compile, `environment` defaults to `"production"` — so anything gated on production behaviour will still occur in your compiled static output. You can override this by explicitly setting `NODE_ENV=development` before the compile command.
+
+The `environment` value is also exposed as `globals.environment`, in case you’d rather access it through the globals namespace.
 
 ## EJS Example
 
@@ -39,5 +44,5 @@ else
 
 ## Also see
 
-* [`harp server`](../environment/server), for changing Harp from development to production mode
+* [CLI](../environment/cli) — full reference for `harp <source>`, `harp <source> <build>`, and the `NODE_ENV=production` flag
 * A blog post about [creating Static draft posts with Harp](http://kennethormandy.com/journal/static-draft-posts-with-harp) using the `environment` variable.
