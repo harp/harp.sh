@@ -35,9 +35,13 @@ A `_data.json` file may contain the following:
 }
 ```
 
-Each top-level key matches a filename in the same directory (without the extension). The variables under that key become plain locals inside the matching template. Inside `articles/hello-world.md`, `<%= title %>` resolves to `"Hello World"`. This works in `.ejs`, `.jade`, **and** `.md` files alike.
+Each top-level key matches a filename in the same directory (without the extension). The variables under that key become plain locals inside the matching template. Inside `articles/hello-world.ejs`, `<%= title %>` resolves to `"Hello World"`. The same works in `.jade`.
 
 > Don’t include the file extension in your `_data.json` keys. `"hello-world.md": { ... }` will throw an error.
+
+### Markdown pages
+
+A `.md` file’s matching `_data.json` entry is attached to its render context too, but the markdown processor itself doesn’t substitute variables — `<%= title %>` inside a `.md` body just appears as literal text. The values *are* available to the wrapping `_layout.ejs` and to any other template via `public.articles._data`, which is the usual way you’d use them: setting the `<title>` tag, choosing a layout, or rendering an index page that enumerates the entries.
 
 ## Accessing the whole map
 

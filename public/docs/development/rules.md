@@ -140,7 +140,7 @@ Rather than offering a complex feature set, Harp has simple rules on how it work
     }
     ```
 
-    Because the `hello-world` key matches the filename `hello-world.md`, those variables become available inside that template as plain locals (`<%= title %>`, `<%= date %>`). This works in `.ejs`, `.jade`, **and** `.md` files alike.
+    Because the `hello-world` key matches the filename `hello-world.md`, those variables are attached to that page’s render context. They’re reachable from the wrapping `_layout.ejs` and from any other template via `public.articles._data`. (For `.ejs` and `.jade` pages, the values are also usable directly inside the page body as `<%= title %>`; markdown bodies don’t interpolate variables — see [Metadata](metadata) for details.)
 
     The whole metadata object is also available globally as `public.articles._data`. That's how an index page enumerates the entries — for example, in EJS:
 
