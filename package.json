@@ -28,7 +28,7 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified…yet! Pull requests on harp/harp.sh are always appriciated.\"",
-    "start": "harp public",
+    "start": "harp public --port 9001",
     "compile": "harp public www",
     "deploy": "npm run compile && surge ./www harp.sh"
   },
