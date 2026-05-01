@@ -1,80 +1,97 @@
 # The `current` object
 
-The `current` object is the best way to apply active state to your applications’ navigation. It is available to every template and contains the state of the current page being rendered.
+The `current` object is the best way to apply active state to your application’s navigation. It’s available in every template and describes the page being rendered right now.
 
 ## Why?
 
-When reusing templates for things like navigation, the `current` object is useful for applying an active state to the navigation it may also be used as an unconventional way to render layouts or partials. This keeps our application code DRY without compromising on the usability of the application.
+When reusing templates for things like navigation, the `current` object lets you apply an active state to the right link, conditionally render layouts or partials, or otherwise branch on which page is loading — all without writing a new copy of the template per page.
 
 ## Properties
 
-- **path** - (Array) which is the file path of the current page being rendered.
-- **source** - (String) which is a shortcut to the last element in the path array.
+- **path** *(Array)* — the file path of the current page, split on `/`, with file extensions stripped.
+- **source** *(String)* — the last element of `path`.
 
-**note** - file extensions are ignored in the current object.
+For most files, the extension is dropped from `source`. The one exception: explicit double-extension files (e.g., `feed.json.ejs`) keep the inner extension, so `current.source` is `"feed.json"` for that file.
 
-Harp provides an array of the current page’s path, with the last item in the list called the current source. This information is available through the `current` object, which is dynamically updated on each page you visit.
+Harp updates `current` on every request.
 
-For example, when visiting `/articles/hello-world`, the following information is available:
-
-```json
-{
-  path: ["articles", "hello-world"],
-  source: "hello-world"
-}
-```
-
-Whereas a request to `/articles/` will have a current object that looks like the following:
+For example, visiting `/articles/hello-world` produces:
 
 ```json
 {
-  path: ["articles", "index"],
-  source: "index"
+  "path": ["articles", "hello-world"],
+  "source": "hello-world"
 }
 ```
 
-Now, you can use this in your template.
+Visiting `/articles/` produces:
 
-## Example Usage
-
-This application has an `index.jade` and `about.jade` page. Both of these pages show a simple nav, which is contained in the `_nav.jade` [partial](partial).
-
-By using the `current` object within the `_nav.jade` template, you can tell which context the nav template is being rendered (ie. which page the person is currently on).
-
-Given the following project:
-
-```
-myproject/
-  |- index.jade
-  |- about.jade
-  +- _nav.jade
+```json
+{
+  "path": ["articles", "index"],
+  "source": "index"
+}
 ```
 
-### Jade Example
+Visiting `/feed.json` (rendered from `feed.json.ejs`) produces:
 
-The `_nav.jade` file, using `current.source`:
-
-```jade
-ul
-  li(class="#{ current.source == 'index' ? 'active' : '' }")
-    a(href="/") Home
-  li(class="#{ current.source == 'about' ? 'active' : '' }")
-    a(href="/about") About
+```json
+{
+  "path": ["feed.json"],
+  "source": "feed.json"
+}
 ```
 
-### EJS Example
+## Example: active nav state
 
-That same template, as `_nav.ejs` instead of `nav.jade`:
+This application has an `index.ejs`, an `about.ejs`, and an `articles/` section. All three pages reuse a `_nav.ejs` partial:
+
+```
+mysite/
+  |- _nav.ejs
+  |- index.ejs
+  |- about.ejs
+  `- articles/
+      |- _data.json
+      |- index.ejs
+      `- hello-world.md
+```
+
+### EJS
+
+`_nav.ejs`, using `current.source` and `current.path` to set an `active` class on the right link:
 
 ```ejs
 <ul>
-  <li class="<%- current.source == 'index' ? 'active' : '' %>">
+  <li class="<%= current.path.length === 1 && current.source === 'index' ? 'active' : '' %>">
     <a href="/">Home</a>
   </li>
-  <li class="<%- current.source == 'about' ? 'active' : '' %>">
+  <li class="<%= current.source === 'about' ? 'active' : '' %>">
     <a href="/about">About</a>
+  </li>
+  <li class="<%= current.path[0] === 'articles' ? 'active' : '' %>">
+    <a href="/articles">Articles</a>
   </li>
 </ul>
 ```
 
-Thanks to the `current.source`, you now have classes on the nav that change depending on the context. These can then be styled with CSS, or your preprocessor of choice: [Sass](sass), [LESS](less), or [Stylus](stylus).
+A couple of patterns worth noting:
+
+- **Home link.** Both the path length **and** source check are needed. Visiting `/articles/` also has `current.source === 'index'` (it’s `articles/index.ejs`), so checking `source` alone would mark Home as active when you’re on the articles index.
+- **Section link.** Checking `current.path[0]` matches both `/articles/` and any nested page like `/articles/hello-world` — useful for highlighting the section regardless of which sub-page is active.
+
+### Jade
+
+Same idea with Jade:
+
+```jade
+ul
+  li(class=current.path.length === 1 && current.source === 'index' ? 'active' : '')
+    a(href="/") Home
+  li(class=current.source === 'about' ? 'active' : '')
+    a(href="/about") About
+  li(class=current.path[0] === 'articles' ? 'active' : '')
+    a(href="/articles") Articles
+```
+
+The `class` attribute can be styled with CSS, [Sass](sass), [LESS](less), or [Stylus](stylus).

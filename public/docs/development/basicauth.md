@@ -4,13 +4,13 @@ Add a password to your site to restrict who can visit it.
 
 ## Why?
 
-You may want an efficient way to add password protection to an entire static site or client-side application, whether it’s intended for internal use or just a temporary measure while you work on a project with a client.
+You may want an efficient way to add password protection to an entire static site or client-side application — whether it’s for internal use, a staging preview, or a temporary measure while you work on a project with a client.
 
 ## Example
 
-![Logging into the default Harp application with basic authentication.](../images/basic-auth-1.gif)
+![Logging into a Harp application with basic authentication.](../images/basic-auth-1.gif)
 
-Create a `_harp.json` file in the root of your application if you don’t have one already, or a `harp.json` file if you have an explicit [public directory](public). Adding the following will password protect your application with the username `Ali Baba` and password `Open, Sesame!`:
+Create a `_harp.json` file in your served directory (or `harp.json` if you’re using the legacy app-style with a `public/` subdirectory). The following password-protects your application with the username `Ali Baba` and password `Open, Sesame!`:
 
 ```json
 {
@@ -18,9 +18,9 @@ Create a `_harp.json` file in the root of your application if you don’t have o
 }
 ```
 
-## Multiple Accounts
+## Multiple accounts
 
-You may also specify multiple basic accounts to authenticate against:
+You can also specify multiple accounts as an array:
 
 ```json
 {
@@ -28,24 +28,24 @@ You may also specify multiple basic accounts to authenticate against:
 }
 ```
 
-## The full `harp.json` file
+## The full `_harp.json` file
 
-The `basicAuth` array or string sits alongside [any other properties in the `harp.json` file](globals). A longer `harp.json` could look like this:
+`basicAuth` is a top-level key in `_harp.json`, sitting alongside [any other properties](globals). It’s **not** nested under `globals`. A longer config combining the two:
 
 ```json
 {
   "basicAuth": "Ali Baba:Open, Sesame!",
   "globals": {
-      "title": "Ali Baba’s blog",
-      "author": "Ali Baba",
-      "description": "A secret blog"
+    "title": "Ali Baba’s blog",
+    "author": "Ali Baba",
+    "description": "A secret blog"
   }
 }
 ```
 
-## No auth
+## Disabling auth
 
-If you wish to leave the `basicAuth` property in the `harp.json` file but don’t presently need `basicAuth`, an empty array will not add any restrictions:
+To leave the `basicAuth` property in the file but turn off enforcement, set it to an empty array:
 
 ```json
 {
@@ -53,10 +53,8 @@ If you wish to leave the `basicAuth` property in the `harp.json` file but don’
 }
 ```
 
-## Basic Authentication and `harp compile`
+## Basic Authentication and compiled output
 
-Because Harp is a web server that can generate static sites, and not strictly a static site generator, it supports additional features that cannot be compiled down to plain HTML, CSS, and JavaScript, like `basicAuth`.
+Basic Auth is a runtime feature of Harp’s web server. When you compile your project to static files (`harp <source> <build>`) and serve that compiled output from another host — nginx, S3, GitHub Pages, Cloudflare Pages, etc. — Harp is no longer in the request path, so `basicAuth` has no effect. The compiled HTML, CSS, and JavaScript is delivered directly by the new host.
 
-If you are using `harp compile` and serving the project with a different web server, like Apache, or deploying to GitHub Pages, this feature will not be supported by those platforms.
-
-Instead, you could deploy your application to the [Harp Platform](https://www.harp.io), which supports this feature. Manually deploying Harp in production, perhaps to [Heroku](/docs/deployment/heroku) or [Github Pages](/docs/deployment/github-pages), would be another option.
+If you need password protection on a static deployment, configure it at the host level (most CDNs and static hosts support some form of password gating). To keep using Harp’s built-in `basicAuth`, run Harp itself as the web server in production — for example, on a [Heroku](/docs/deployment/heroku) dyno or your own VPS.

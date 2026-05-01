@@ -1,73 +1,73 @@
 # Quick Start
 
-This guide will help you install Harp. You’ll create and serve a simple project in `development` mode, where preprocessing occurs automatically, and then in `production` mode, where the preprocessed output is cached for better performance.
+This guide walks you through installing Harp, creating a small project, serving it locally, and compiling it to static files.
 
-1. ## Install the Harp Web Server
+1. ## Install the Harp web server
 
-  <div class="videoWrapper"><iframe width="853" height="480" src="//www.youtube.com/embed/SEA0G9kpVJM?rel=0" frameborder="0" allowfullscreen></iframe></div>
-
-  First, install [Node.js](https://nodejs.org/download/). Harp uses Node.js, but you don’t need to know about Node.js or even JavaScript to use Harp. Once it’s finished installing, you can install Harp using the mighty npm: Node.js’ package manager. You’ll use the command prompt to do this.
-
-  ### On OS X and Linux
-
-  Access the command prompt using the Terminal application. On OS X, it’s located in Applications → Utilities → Terminal. On Ubuntu, find it in Applications → Terminal. Then, run the following command:
+  Harp runs on [Node.js](https://nodejs.org/download/), so you’ll need that first. Once Node.js is installed, install Harp globally with npm:
 
   ```bash
   sudo npm install -g harp
   ```
 
-  ### On Windows
+  (Drop the `sudo` if you don’t need it, or you’re on Windows.)
 
-  If you are using Windows, NodeJS will have come with the Node.js Command Prompt application. Now, to install Harp via npm, type in:
+  Verify the install:
 
   ```bash
-  npm install -g harp
+  harp -v
   ```
 
-2. ## Create an Application
+  See [Install](environment/install) for full details and troubleshooting.
 
-  Harp will serve something as simple as an `index.html`. But, because Harp has built-in preprocessing, you can create HTML with a templating language just as easily. Create an `index.jade` file instead. To do this using the command line, run the following:
+2. ## Create a project
 
-  ```sh
+  A Harp project is just a directory with template files in it. Make a folder and drop an index page inside:
+
+  ```bash
   mkdir hello-world
   cd hello-world
-  echo h1 Hello World >> index.jade
+  echo "<h1>Hello, Harp!</h1>" > index.ejs
   ```
 
-  This will make a `hello-world/` directory for your Harp app. Then, inside that directory, an `index.jade` file is created that will be served as `<h1>Hello world</h1>`.
+  That’s it — you have a working Harp project. The `.ejs` extension tells Harp to run the file through its template engine, even though this particular file doesn’t use any template syntax yet.
 
-3. ## Start the web server
+3. ## Serve it
 
-  Fire up the Harp web server on the default port, `9000`.
+  Run `harp` against the directory:
 
-  ```sh
-  harp server --port 9000
+  ```bash
+  harp .
   ```
 
-  Visiting [localhost:9000](http://localhost:9000) will now show the following:
+  Visit [localhost:9000](http://localhost:9000) and you’ll see your page:
 
   ![Harp “Hello world” in the browser](/docs/images/hello-world.png)
 
-4. ## Compile the project
+  Edit `index.ejs`, refresh your browser, and the change shows up. (Harp doesn’t auto-reload — refresh manually.)
 
-  Optionally to running as a web server you can compile to be run with a webserver of your choice. Harp makes for a great static site generator.
+4. ## Compile to static files
 
-  ```sh
-  harp compile
+  When you’re ready to deploy, give `harp` a destination directory and it’ll produce a flat folder of static HTML, CSS, and JavaScript:
+
+  ```bash
+  harp . ./www
   ```
 
-5. ## Putting Harp in Production
+  The output in `www/` is deployable to any static host: Amazon S3, Netlify, GitHub Pages, Cloudflare Pages, or your own server.
 
-  This is all you need to put a Harp application into production. In production mode, Harp will cache the preprocessed output—in this case, from `index.jade`—to serve the files as quickly as possible. Always use this `production` flag when putting Harp in production:
+5. ## Running in production
 
-  ```sh
-  NODE_ENV=production sudo harp server --port 80
+  If you’d rather run Harp itself as the web server — so features like [Basic Authentication](development/basicauth) and [200/404 fallbacks](development/200-ok) keep working — set `NODE_ENV=production` for additional caching:
+
+  ```bash
+  NODE_ENV=production harp . --port 9000
   ```
 
-  You don’t need to manually run Harp in production to get your project online, however. The easiest way to get started is to use the [Harp Platform](https://www.harp.io/), which lets you create and collaborate on Harp apps right in your Dropbox.
+  See the [CLI reference](environment/cli) for all flags and options.
 
-  You can also run Harp in production on [Heroku](https://harp.sh/docs/deployment/heroku), deploy Harp to [GitHub Pages](https://harp.sh/docs/deployment/github-pages), compile your app for Apache Cordova/PhoneGap, and more.
+## What’s next
 
-## What’s Next
+This is just a taste of what Harp can do. For example, you can drop a `.less` (or `.scss`, `.styl`, `.sass`) file into your project and it’s automatically served as `.css` — no configuration necessary. The same goes for `.coffee`, `.cjs`, and `.jsx` source files, which compile to `.js`.
 
-This is just a taste of what Harp can do for you. For example, you can drop a `.less` (or `.scss`, `.styl`, `.sass`) file into your project and it’s automatically served as `.css` — no configuration necessary. The same goes for `.coffee`, `.cjs`, and `.jsx` source files, which compile to `.js`.
+Next up: read [The Rules](development/rules) for a one-page tour of how Harp organizes a project, then dig into [Layouts](development/layout), [Partials](development/partial), and [Metadata](development/metadata).

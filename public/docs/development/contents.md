@@ -1,66 +1,71 @@
 # Contents
 
-With Harp, you can access information about your compiled files, in addition to [metadata](/docs/development/metadata) about the source files.
+The `_contents` array gives you a list of files in a directory. It’s useful when you want to iterate over files without maintaining metadata for each one.
 
 ## Why?
 
-You may want to iterate over compiled or media files in your application, which may or may not have metadata. The `_contents` object provides a way of doing this.
+Sometimes you have a directory of files — images, downloads, fonts — and want to render a list of them without manually keeping a `_data.json` entry per file. `_contents` gives you that listing automatically, generated from the filesystem.
+
+## Shape
+
+`_contents` is an **array of filename strings**. It includes the servable files in that exact directory and excludes:
+
+- Files and directories whose names start with `_` (the underscore convention for layouts, partials, and metadata).
+- Files starting with `.` (hidden files like `.DS_Store`).
+- Subdirectories themselves — only files in the directory are included, never nested directories or their contents.
+
+You access `_contents` through the `public` namespace, like other directory metadata: `public.images._contents`.
 
 ## Example
 
-Perhaps you have a directory full of images, and want to display them all without having to maintain specific metadata on each one.
+A directory of images:
 
 ```
-myproject/
-  ├ index.jade
-  └ images/
-      ├ hello-world.jpg     <-- hello world image
-      ├ hello-saturn.jpg    <-- hello saturn image
-      └ hello-jupiter.jpg   <-- hello jupiter image
+mysite/
+  |- index.ejs
+  `- images/
+      |- hello-world.jpg
+      |- hello-saturn.jpg
+      `- hello-jupiter.jpg
 ```
 
-### Using EJS
+### EJS
 
-Now, within `index.ejs` you can iterate over the `_contents`, referencing each file.
+Inside `index.ejs`, iterate over `public.images._contents`:
 
 ```ejs
-<% for(var i in public.images._contents){ %>
-  <% var image = public.images._contents[i] %>
-  <% if ( image.match(/\b.(jpg|bmp|jpeg|gif|png|tif)\b/gi) ) { %>
-		<div>
-			<img src="images/<%= image %>" />
-		</div>
+<% public.images._contents.forEach(function(file) { %>
+  <% if (/\.(jpg|jpeg|png|gif|webp)$/i.test(file)) { %>
+    <img src="/images/<%= file %>" alt="" />
   <% } %>
-<% } %>
+<% }) %>
 ```
 
-This results in the following HTML:
+Result:
 
 ```html
-<img src="images/hello-world.jpg" />
-<img src="images/hello-saturn.jpg" />
-<img src="images/hello-jupiter.jpg" />
+<img src="/images/hello-world.jpg" alt="" />
+<img src="/images/hello-saturn.jpg" alt="" />
+<img src="/images/hello-jupiter.jpg" alt="" />
 ```
 
-### Using Jade
+The regex filter matches image extensions; without it, `_contents` would also include any non-image files in the directory.
 
-Now, within `index.jade` you can iterate over the `_contents`, referencing each file.
+### Jade
 
 ```jade
-for image in public.images._contents
-  img(src="images/#{ image }")
+for file in public.images._contents
+  img(src="/images/#{ file }")
 ```
 
-This results in the following HTML:
+## Other use cases
 
-```html
-<img src="images/hello-world.jpg" />
-<img src="images/hello-saturn.jpg" />
-<img src="images/hello-jupiter.jpg" />
-```
+`_contents` works for any directory of files. Common patterns:
 
-<!--
+- A downloads page listing every file in `downloads/`.
+- A list of fonts, audio clips, or PDFs.
+- A "recent posts" list keyed off filename — though [`_data.json`](metadata) is preferred when you have a title, date, or author to attach.
+
 ## Also see
 
-- Other relevant article
--->
+- [Metadata](metadata) — when you need structured data (title, date, etc.) for each file, reach for `_data.json` instead of `_contents`.
