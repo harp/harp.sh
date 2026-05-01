@@ -24,25 +24,20 @@ If you are using Windows, Node.js will have come with the Node.js Command Prompt
 npm install -g harp
 ```
 
-**That’s it!** You can verify the install with:
+**That’s it!** Verify the install with:
 
 ```bash
 harp -v
 ```
 
-To start serving any folder of templates, run `harp` against that directory:
+To start serving any folder of templates, point `harp` at that directory:
 
 ```bash
-harp ./mysite                  # serves at http://localhost:9000
-harp .                         # serves the current directory
-harp ./mysite --port 3000      # custom port
+harp ./mysite
+# Serving at http://localhost:9000
 ```
 
-To compile a project to a directory of static files, give it a destination:
-
-```bash
-harp ./mysite ./www
-```
+For the full set of commands, flags, and compile options, see the [CLI reference](/docs/environment/cli).
 
 ## Updating Harp
 

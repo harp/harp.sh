@@ -4,6 +4,10 @@
     "description": "Installing and updating Harp (npm install -g harp)",
     "release": "0.1.0"
   },
+  "cli": {
+    "title": "CLI",
+    "description": "Using the harp command to serve and compile projects"
+  },
   "lib": {
     "title": "Lib",
     "description": "Using Harp as Middleware, directly embedded in your Express App",
