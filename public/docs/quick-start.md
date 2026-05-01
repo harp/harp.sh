@@ -7,10 +7,8 @@ This guide walks you through installing Harp, creating a small project, serving 
   Harp runs on [Node.js](https://nodejs.org/download/), so you’ll need that first. Once Node.js is installed, install Harp globally with npm:
 
   ```bash
-  sudo npm install -g harp
+  npm install -g harp
   ```
-
-  (Drop the `sudo` if you don’t need it, or you’re on Windows.)
 
   Verify the install:
 

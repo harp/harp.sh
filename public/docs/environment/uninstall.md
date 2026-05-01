@@ -5,5 +5,5 @@ Sorry to see you go. If you’re having troubles, there’s often people ready t
 You can uninstall Harp using `npm`:
 
 ```sh
-sudo npm uninstall -g harp
+npm uninstall -g harp
 ```
