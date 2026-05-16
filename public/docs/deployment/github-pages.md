@@ -48,7 +48,7 @@ These five steps will quickly walk you through deploying a Harp app to a persona
   Harp can compile your app to <abbr>HTML</abbr>, <abbr>CSS</abbr>, and JavaScript whenever you’d like. By default, `harp compile` creates a `www` directory. Because GitHub Pages are served from the root of the repository, however, you’ll want to compile your Harp app there instead.
 
   ```sh
-  harp compile _harp ./
+  harp compile _harp ./ ../
   ```
 
 5. ### Deploy to GitHub Pages
