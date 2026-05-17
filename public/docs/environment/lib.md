@@ -80,3 +80,32 @@ And that should output this:
 <h1>Hello World</h1>
 <p>bar</p>
 ```
+
+## Subtle difference with Harp server
+
+Mounting Harp as a library using `harp.mount()` does not load all the layers of middleware that a regular Harp server (using `harp.server()`) does.
+
+However, `harp.middleware` conveniently exposes all available Harp middleware such as `fallback`, `notFound` and `underscore` so you can easily add additional Harp features to your server in a way that makes sense for your application.
+
+For example:
+
+```javascript
+var express = require("express");
+var harp = require("harp");
+var app = express();
+var appRoot = __dirname + "/public";
+
+// Ignore files that start with underscores
+app.use(harp.middleware.underscore);
+
+// Serve static assets
+app.use(express.static(appRoot));
+
+// Let harp serve application
+app.use(harp.mount(appRoot));
+
+// Let 200.jade catch all other requests
+app.use(harp.middleware.fallback);
+
+app.listen(9000);
+```
