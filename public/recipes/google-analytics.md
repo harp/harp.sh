@@ -26,7 +26,7 @@ if service.analytics
   ga('send', 'pageview');
 ```
 
-Then, set the values in _harp.json or harp.json:
+Then, set the values under the `globals` variable in _harp.json (or harp.json) file in the root of your project:
 
 ```json
 "service": {
@@ -38,7 +38,7 @@ Then, set the values in _harp.json or harp.json:
 
 First, create a partial to include Google's embed code. 
 
-_shared/analytics.jade
+_shared/analytics.ejs
 
 ```ejs
 <% if(service && service.analytics) { %>
