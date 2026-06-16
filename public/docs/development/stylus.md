@@ -50,10 +50,10 @@ If you are familiar with Sass, you will accustomed to naming your partials with 
 
 ## Using Nib
 
-[Nib](http://visionmedia.github.io/nib/) is a library of mixins and utilities for Stylus. The fastest way to add Nib to your Harp app is to clone the Nib Git repository:
+[Nib](https://stylus.github.io/nib/) is a library of mixins and utilities for Stylus. The fastest way to add Nib to your Harp app is to clone the Nib Git repository:
 
 ```sh
-git clone https://github.com/visionmedia/nib.git /path/to/myapp.harp.io/public/css/_nib
+git clone https://github.com/stylus/nib.git /path/to/myapp.harp.io/public/css/_nib
 ```
 
 Now, in `style.styl` from the previous example, I can bring in Nib.
@@ -68,5 +68,5 @@ body
 ```
 
 ## Also see
-- [Official Site](http://learnboost.github.io/stylus/)
-- [Nib Documentation](http://visionmedia.github.io/nib/)
+- [Official Site](http://stylus-lang.com/)
+- [Nib Documentation](https://stylus.github.io/nib/)
